@@ -29,13 +29,13 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Vui lòng đăng nhập nhé!</h1>
                   </div>
-                  <form class="user" method="post" action="{{ route('login') }}">
+                  <form class="user" method="post" action="{{ route('handersLogin') }}">
                     @csrf
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="email" aria-describedby="emailHelp" name="email" placeholder="Xin vui lòng nhập email...">
+                      <input type="text" class="form-control form-control-user" id="username" aria-describedby="nameHelp" name="username" placeholder="Xin vui lòng nhập họ tên..." required>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Xin vui lòng nhập password...">
+                      <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Xin vui lòng nhập mật khẩu..." required>
                     </div>
                     <!-- Group of default radios - option 1 -->
                     <div class="custom-control custom-radio">

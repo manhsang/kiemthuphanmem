@@ -12,5 +12,7 @@
 */
 
 Route::namespace('Backend')->group(function () {
-  Route::any("/", "LoginController@index")->name('login');
+  Route::get("/", "LoginController@index")->name('login');
+  Route::post("/login", "LoginController@handersLogin")->name('handersLogin');
+  Route::get("/home", "HomeController@index")->name('home');
 });
