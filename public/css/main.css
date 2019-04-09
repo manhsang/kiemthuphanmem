@@ -1,0 +1,5 @@
+#image-banner{
+	background: url('../img/hinh.jpg');
+	background-position: center;
+	background-size: cover;
+}
