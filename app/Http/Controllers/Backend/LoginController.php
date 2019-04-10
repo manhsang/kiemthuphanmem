@@ -30,9 +30,9 @@ class LoginController extends Controller
      */
     public function handersLogin(Request $request)
     {
-      $this->data->getListUser($request);
-      if(empty($this->data) == false) {
-        return redirect()->route('login');
+      $results = $this->data->getListUser($request);
+      if(empty($results)) {
+        return redirect()->route('login')->withErrors("Bạn nhập dữ liệu chưa đúng...!");
       } else {
         return redirect()->route('home');
       }

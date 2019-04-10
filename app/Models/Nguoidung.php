@@ -37,7 +37,7 @@ class Nguoidung extends Model
     public function getListUser($data) {
       $results = Nguoidung::where('UserName', $data['username'])
                         ->where('PassWord', md5($data['password']))
-                        ->get();
+                        ->first();
       return $results;
     }
 }
