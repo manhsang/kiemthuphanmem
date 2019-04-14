@@ -15,4 +15,7 @@ Route::namespace('Backend')->group(function () {
   Route::get("/", "LoginController@index")->name('login');
   Route::post("/login", "LoginController@handersLogin")->name('handersLogin');
   Route::get("/home", "HomeController@index")->name('home');
+  Route::resource('nguoidung', 'NguoidungController');
+  Route::resource('sanpham', 'SanphamController');
+  Route::resource('donhang', 'DonhangController');
 });

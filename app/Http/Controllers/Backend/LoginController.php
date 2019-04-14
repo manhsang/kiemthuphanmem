@@ -24,6 +24,11 @@ class LoginController extends Controller
       return view('backend.page.login');
     }
 
+    public function getContent()
+    {
+      return 'da test duoc';
+    }
+
     /**
      * 
      * @param Request $request

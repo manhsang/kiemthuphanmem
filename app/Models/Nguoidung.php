@@ -40,4 +40,22 @@ class Nguoidung extends Model
                         ->first();
       return $results;
     }
+
+    public function getListUserWhenLoginSuccess() {
+      $results = $this->all();
+      return $results;
+    }
+
+    public function getListDetail($id) {
+      $results = Nguoidung::find($id)->first();
+      return $results;
+    }
+
+    public function insertData($data) {
+      $mahoa = md5($data->matkhau);
+      $this->HoTen    = $data->hoten;
+      $this->UserName = $data->ten;
+      $this->PassWord = $mahoa;
+      return $this->save();
+    }
 }
