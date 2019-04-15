@@ -4,7 +4,7 @@
       <div id="addEmployeeModal">
         <div class="modal-dialog">
           <div class="modal-content">
-            <form method="put" action="{{ route('nguoidung.update', ['id' => $data['id']]) }}">
+            <form method="PATCH" action="{{ route('nguoidung.update', ['id' => $data['id']]) }}">
               @csrf
               <div class="modal-header">                      
                 <h4 class="modal-title">sửa người dùng</h4>

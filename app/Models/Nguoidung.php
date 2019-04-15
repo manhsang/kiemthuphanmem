@@ -35,10 +35,18 @@ class Nguoidung extends Model
     public $timestamp = true;
 
     public function getListUser($data) {
-      $results = Nguoidung::where('UserName', $data['username'])
-                        ->where('PassWord', md5($data['password']))
-                        ->first();
-      return $results;
+      try {
+        $results = Nguoidung::where('UserName', $data['username'])
+                            ->where('PassWord', md5($data['password']))
+                            ->first();
+        if(!$results) {
+          return false;
+        }
+        return true;
+      } catch (\Exception $e) {
+        return $e->getMessage();
+      }
+      
     }
 
     public function getListUserWhenLoginSuccess() {
@@ -52,10 +60,20 @@ class Nguoidung extends Model
     }
 
     public function insertData($data) {
-      $mahoa = md5($data->matkhau);
-      $this->HoTen    = $data->hoten;
-      $this->UserName = $data->ten;
-      $this->PassWord = $mahoa;
-      return $this->save();
+      try {
+        if(empty($data->hoten) || empty($data->ten) || empty($data->matkhau)) {
+          return false;
+        }
+        $mahoa = md5($data->matkhau);
+        $this->HoTen    = $data->hoten;
+        $this->UserName = $data->ten;
+        $this->PassWord = $mahoa;
+        if(!$this->save()) {
+          return false;
+        }
+        return true;
+      } catch (\Exception $e) {
+        return $e->getMessage();
+      }
     }
 }
