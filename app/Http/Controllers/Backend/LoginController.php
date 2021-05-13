@@ -33,8 +33,7 @@ class LoginController extends Controller
       $results = $this->data->getListUser($request);
       if(empty($results)) {
         return redirect()->route('login')->withErrors("Bạn nhập dữ liệu chưa đúng...!");
-      } else {
-        return redirect()->route('home');
       }
+      return redirect()->route('home');
     }
 }

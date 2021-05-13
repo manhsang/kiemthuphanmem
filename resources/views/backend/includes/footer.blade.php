@@ -14,3 +14,5 @@
 <!-- Page level custom scripts -->
 <script src="{{ asset('js/chart-area-demo.js') }}"></script>
 <script src="{{ asset('js/chart-pie-demo.js') }}"></script>
+
+<script src="{{ asset('js/index.js') }}"></script>

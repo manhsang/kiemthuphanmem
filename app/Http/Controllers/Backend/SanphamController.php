@@ -4,9 +4,19 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Sanpham;
+use App\Models\Nhasanxuat;
+use App\Models\Loaisanpham;
 
 class SanphamController extends Controller
 {
+    /**
+     * 
+     */
+    public function __construct() {
+      $this->sanpham      = new Sanpham();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,8 @@ class SanphamController extends Controller
      */
     public function index()
     {
-      return view('backend.page.sanpham');
+      $data = $this->sanpham->getListSanpham();
+      return view('backend.page.sanpham.list', ['data' => $data]);
     }
 
     /**
@@ -24,7 +35,7 @@ class SanphamController extends Controller
      */
     public function create()
     {
-        //
+      return view('backend.page.sanpham.create');
     }
 
     /**

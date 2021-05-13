@@ -39,7 +39,7 @@ class Nguoidung extends Model
         $results = Nguoidung::where('UserName', $data['username'])
                             ->where('PassWord', md5($data['password']))
                             ->first();
-        if(!$results) {
+        if(empty($results)) {
           return false;
         }
         return true;
@@ -72,6 +72,32 @@ class Nguoidung extends Model
           return false;
         }
         return true;
+      } catch (\Exception $e) {
+        return $e->getMessage();
+      }
+    }
+
+    public function getUpdate($id) {
+      $results = Nguoidung::where('id', $id)->get();
+      return $results;
+    }
+
+    public function capnhat($data, $id) {
+      try {
+        if(empty($data)) {
+          return false;
+        }
+        $updateData = [
+          'HoTen'    => $data['hoten'],
+          'UserName' => $data['ten'],
+          'PassWord' => md5($data['matkhau'])
+        ];
+        $result = $this->where('id', $id)
+                  ->update($updateData);
+        if($result) {
+          return true;
+        }
+        return false;
       } catch (\Exception $e) {
         return $e->getMessage();
       }

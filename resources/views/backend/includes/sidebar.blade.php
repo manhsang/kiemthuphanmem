@@ -309,6 +309,8 @@
         @include('backend.layout.edit')
       @elseif(\Request::route()->getName() == 'nguoidung.index')
         @include('backend.layout.table')
+      @elseif(\Request::route()->getName() == 'sanpham.index')
+        @include('backend.layout.sanpham.list')
       @endif
 
       <!-- Begin Page Content -->

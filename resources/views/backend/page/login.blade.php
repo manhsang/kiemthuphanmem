@@ -17,6 +17,11 @@
             </ul>
         </div>
       @endif
+      @if(session()->has('message'))
+          <div class="alert alert-success">
+              {{ session()->get('message') }}
+          </div>
+      @endif
       <div class="col-xl-10 col-lg-12 col-md-9">
 
         <div class="card o-hidden border-0 shadow-lg my-5">

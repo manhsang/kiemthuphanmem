@@ -3,14 +3,9 @@
     <div class="table-title">
       <div class="row">
         <div class="col-sm-6">
-            <h2>Quản lý <b>người dùng</b></h2>
+            <h2>Quản lý <b>sản phẩm</b></h2>
         </div>
       </div>
-      @if(session()->has('message'))
-          <div class="alert alert-success">
-              {{ session()->get('message') }}
-          </div>
-      @endif
     </div>
     <table class="table table-striped table-hover">
       <thead>
@@ -21,12 +16,12 @@
                 <label for="selectAll"></label>
             </span>
           </th>
-          <th>Số TT</th>
-          <th>Họ tên</th>
-          <th>Tên</th>
-          <th>Mật khẩu</th>
-          <th></th>
-          <th><a href="{{ route('nguoidung.create') }}" class="btn btn-success"><i class="material-icons">&#xE147;</i></a></th>
+          <th>STT</th>
+          <th>Tên sản phẩm</th>
+          <th>Nhà sản xuất</th>
+          <th>Loại sản phẩm</th>
+          <th>Hình Minh Họa</th>
+          <th><a href="{{ route('sanpham.create') }}" class="btn btn-success"><i class="material-icons">&#xE147;</i></a></th>
         </tr>
       </thead>
       <tbody>
@@ -39,20 +34,14 @@
                 <label for="checkbox1"></label>
             </span>
           </td>
-          <td><a href="{{ route('nguoidung.show', ['id' => $val['id']]) }}">{{ $val['id'] }}</a></td>
-          <td>{{ $val['HoTen'] }}</td>
-          <td>{{ $val['UserName'] }}</td>
-          <td>{{ $val['PassWord'] }}</td>
+          <td><a href="{{ route('sanpham.show', ['id' => $val['id']]) }}">{{ $val['id'] }}</a></td>
+          <td>{{ $val['TenSanPham'] }}</td>
+          <td>{{ $val['nhasanxuat_id'] }}</td>
+          <td>{{ $val['loaisanpham_id'] }}</td>
+          <td><img src="img/{{ $val['HinhMinhHoa'] }}" width="100" height="100"></td>
           <td>
             <a href="{{ route('nguoidung.edit', ['id' => $val['id']]) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-            {{-- <a href="#" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a> --}}
-          </td>
-          <td>
-            <form action="{{ route('nguoidung.destroy',['id' => $val['id']]) }}" method="POST">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
+            <a href="call ajax" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
           </td>
         </tr>
         @endforeach

@@ -47,7 +47,7 @@ class NguoidungController extends Controller
     {
       $this->nguoidung->insertData($request);
       if($this->nguoidung) {
-        return redirect()->route('nguoidung.index')->with('success', 'Thêm thành công...!');
+        return redirect()->route('nguoidung.index')->with('message', 'Thêm thành công...!');
       }
     }
 
@@ -76,7 +76,7 @@ class NguoidungController extends Controller
     {
       $data = [];
       $this->data['id']       = $id;
-      $this->data['arrData']  = $this->nguoidung->getListDetail($id);
+      $this->data['arrData']  = $this->nguoidung->getUpdate($id);
       if(!$this->data) {
         return route('backend.page.edit')->with('errors', 'không có dữ liêu...!');
       }
@@ -92,7 +92,13 @@ class NguoidungController extends Controller
      */
     public function update(Request $request, $id)
     {
-       dd('da update');
+      $request->validate([
+          'hoten'     =>'required',
+          'ten'       => 'required',
+          'matkhau'   => 'required'
+      ]);
+      $this->nguoidung->capnhat($request->all(), $id);
+      return redirect()->route('nguoidung.index')->with('message', 'cập nhật thành công...!');
     }
 
     /**
@@ -103,6 +109,8 @@ class NguoidungController extends Controller
      */
     public function destroy($id)
     {
-      dd('delete');
+      $this->nguoidung->delete();
+      return redirect()->route('nguoidung.index')
+                        ->with('message','xóa thành công');
     }
 }
